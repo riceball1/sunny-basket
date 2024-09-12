@@ -8244,13 +8244,6 @@
   application.debug = false;
   window.Stimulus = application;
 
-  // app/javascript/controllers/hello_controller.js
-  var hello_controller_default = class extends Controller {
-    connect() {
-      this.element.textContent = "Hello World!";
-    }
-  };
-
   // node_modules/svelte/src/runtime/internal/utils.js
   function noop() {
   }
@@ -8849,7 +8842,7 @@
   if (typeof window !== "undefined")
     (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(PUBLIC_VERSION);
 
-  // app/javascript/svelte/Container.svelte
+  // app/javascript/svelte/App.svelte
   function create_fragment(ctx) {
     let div;
     let h1;
@@ -8860,7 +8853,7 @@
       c() {
         div = element("div");
         h1 = element("h1");
-        h1.textContent = "Container";
+        h1.textContent = "App";
         t1 = space();
         p = element("p");
         t2 = text(
@@ -8897,6 +8890,7 @@
   function instance($$self, $$props, $$invalidate) {
     let { target } = $$props;
     onMount(() => {
+      console.log("App mounted");
       if (target == void 0) {
         $$invalidate(0, target = "It was undefinded!");
       }
@@ -8906,29 +8900,27 @@
     };
     return [target];
   }
-  var Container = class extends SvelteComponent {
+  var App = class extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance, create_fragment, safe_not_equal, { target: 0 });
     }
   };
-  var Container_default = Container;
+  var App_default = App;
 
   // app/javascript/controllers/svelte_controller.js
   var svelte_controller_default = class extends Controller {
     connect() {
-      console.log("Hello, Stimulus!", this.element);
-      const app = new Container_default({
+      const app = new App_default({
         target: this.element,
         props: {
-          target: "world"
+          target: "Hello World!"
         }
       });
     }
   };
 
   // app/javascript/controllers/index.js
-  application.register("hello", hello_controller_default);
   application.register("svelte", svelte_controller_default);
 })();
 /*! Bundled license information:

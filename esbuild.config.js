@@ -5,7 +5,7 @@ const watch = process.argv.includes('--watch');
 const buildOptions = {
     entryPoints: ["app/javascript/application.js"],
     bundle: true,
-    outfile: "dist/bundle.js",
+    outfile: "app/assets/builds/application.js",
     plugins: [require("esbuild-svelte")()],
     logLevel: "info",
 };
